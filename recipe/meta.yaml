@@ -13,13 +13,13 @@ source:
   sha256: 78a97f829f0dc1bdf05049458964ef56f05be0d16c2dc942a1720b94439c9641
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
     - category_encoders
     - jinja2
@@ -31,7 +31,7 @@ requirements:
     - scipy
     - polars >=0.12.5
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - category_encoders
     - jinja2
     - tqdm
@@ -49,6 +49,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/smazzanti/mrmr
